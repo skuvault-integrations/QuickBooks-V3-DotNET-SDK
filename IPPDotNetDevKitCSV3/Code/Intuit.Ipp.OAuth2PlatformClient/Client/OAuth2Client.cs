@@ -73,9 +73,18 @@ namespace Intuit.Ipp.OAuth2PlatformClient
         /// <param name="environment"></param>
         public OAuth2Client(string clientID, string clientSecret, string redirectURI, string environment)
         {
-            ClientID = clientID ?? throw new ArgumentNullException(nameof(clientID));
-            ClientSecret = clientSecret ?? throw new ArgumentNullException(nameof(clientSecret));
-            RedirectURI = redirectURI ?? throw new ArgumentNullException(nameof(redirectURI)); 
+            if ( clientID == null )
+			throw new ArgumentNullException( nameof( clientID ) );
+            
+		if ( clientSecret == null )
+			throw new ArgumentNullException(nameof ( clientSecret ) );
+		
+		if ( redirectURI == null )
+			throw new ArgumentNullException(nameof(redirectURI));
+
+		ClientID = clientID;
+            ClientSecret = clientSecret;
+            RedirectURI = redirectURI;
             ApplicationEnvironment = (AppEnvironment)Enum.Parse(typeof(AppEnvironment), environment, true) ;
             
             DiscoveryDoc = GetDiscoveryDoc();
