@@ -6,7 +6,7 @@
     <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
     <LibTargetFrameworks>net472;net461</LibTargetFrameworks>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb;.xml</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <PackageId>IppDotNetSdkForQuickBooksApiV3</PackageId>
+    <PackageId>IppDotNetSdkForQuickBooksApiV3.SV</PackageId>
     <AssemblyName>IppDotNetSdkForQuickBooksApiV3</AssemblyName>
     <DocumentationFile>$(BaseOutputPath)$(AssemblyName).xml</DocumentationFile>
     <MainVersion>7.5.1</MainVersion>
@@ -47,13 +47,6 @@
 	<ProjectReference Include="..\..\ThirdParty\Linq Extender\Intuit.Ipp.LinqExtender.csproj" AdditionalProperties="TargetFramework=net461" PrivateAssets="all" />
   </ItemGroup>
   
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461'">
-    
-    <PackageReference Update="Newtonsoft.Json" Version="12.0.1" />
-   
-  </ItemGroup>
-  
-
   <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
     <ItemGroup>
       <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
